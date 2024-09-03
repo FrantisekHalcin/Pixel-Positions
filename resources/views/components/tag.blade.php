@@ -1,4 +1,4 @@
-@props(['size' => 'small'])
+@props(['size' => 'small', 'tag'])
 
 @php
 $classes = 'h-fit w-fit py-1 bg-white/10 hover:bg-white/20 rounded-xl transition-colors duration-500';
@@ -10,4 +10,4 @@ $classes = 'h-fit w-fit py-1 bg-white/10 hover:bg-white/20 rounded-xl transition
     }
 @endphp
 
-<a {{ $attributes }} class="{{ $classes }}">{{ $slot }}</a>
+<a href="/tags/{{ strtolower($tag->name) }}" {{ $attributes }} class="{{ $classes }}">{{ $tag->name }}</a>

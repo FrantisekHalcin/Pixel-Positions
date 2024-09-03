@@ -13,29 +13,27 @@
         <section class="pt-5">
             <x-heading-section>Top Jobs</x-heading-section>
             <div class="grid sm:grid-cols-3 gap-4 w-full">
-                <x-job-card></x-job-card>
-                <x-job-card></x-job-card>
-                <x-job-card></x-job-card>
+                @foreach($featuredJobs as $job)
+                    <x-job-card :$job ></x-job-card>
+                @endforeach
             </div>
         </section>
 
         <section>
             <x-heading-section>Tags</x-heading-section>
             <div class="space-x-1">
-                <x-tag href="#" :size="'base'">Stress</x-tag>
-                <x-tag href="#" :size="'base'">Loyalty</x-tag>
-                <x-tag href="#" :size="'base'">Pressure</x-tag>
-                <x-tag href="#" :size="'base'">Sport</x-tag>
-                <x-tag href="#" :size="'base'">Improvement</x-tag>
+                @foreach($tags as $tag)
+                    <x-tag :size="'base'" :$tag></x-tag>
+                @endforeach
             </div>
         </section>
 
         <section>
             <x-heading-section>Recent Jobs</x-heading-section>
             <div class="space-y-5">
-                <x-job-card-wide></x-job-card-wide>
-                <x-job-card-wide></x-job-card-wide>
-                <x-job-card-wide></x-job-card-wide>
+                @foreach($jobs as $job)
+                    <x-job-card-wide :$job ></x-job-card-wide>
+                @endforeach
             </div>
         </section>
 

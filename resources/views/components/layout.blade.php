@@ -15,14 +15,29 @@
             <img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="">
         </a>
         <div class="space-x-4">
-            <a href="#">Jobs</a>
+            <a href="/">Jobs</a>
             <a href="#">Careers</a>
             <a href="#">Salaries</a>
             <a href="#">Companies</a>
         </div>
-        <a href="#">Post a Job</a>
+        <div class="flex gap-x-4">
+            @auth
+                <a href="jobs/create">Post a Job</a>
+                <x-forms.form class="h-fit" method="Post" action="/logout">
+                    @method('DELETE')
+                    <button style="margin: 0 !important; ">Log Out</button>
+                </x-forms.form>
+            @endauth
+            @guest
+                <div class="space-x-4">
+                    <a href="/login">Sign Up</a>
+                    <a href="/register">Register</a>
+                </div>
+            @endguest
+        </div>
+
     </nav>
-    <main class="max-w-[980px] m-auto">
+    <main class="max-w-[980px] m-auto py-10">
         {{ $slot }}
     </main>
 </div>
