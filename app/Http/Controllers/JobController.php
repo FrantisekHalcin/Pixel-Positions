@@ -58,7 +58,7 @@ class JobController extends Controller
 
         if ($attr['tags']) {
            foreach (explode(',', $attr['tags']) as $tag) {
-               $job->tag($tag);
+               $job->tag(trim($tag));
            };
         }
 
@@ -102,7 +102,7 @@ class JobController extends Controller
             $job->tags()->detach();
 
             foreach (explode(',', $attr['tags']) as $tag) {
-                $job->tag($tag);
+                $job->tag(trim($tag));
             };
         }
 
