@@ -12,7 +12,7 @@
             <option>Freelance</option>
         </x-forms.select>
 
-        <x-forms.checkbox label="Featured (costs extra)" name="featured" placeholder="featured"></x-forms.checkbox>
+        <x-forms.checkbox label="Featured (costs extra)" name="featured" checkLabel="Featured"></x-forms.checkbox>
 
         <x-forms.divider></x-forms.divider>
 

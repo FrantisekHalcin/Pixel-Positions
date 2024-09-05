@@ -21,7 +21,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [JobController::class, 'index']);
 
 Route::get('/jobs/create', [JobController::class, 'create'])->middleware('auth');
-Route::post('/jobs', [JobController::class, 'store'])->middleware('auth');;
+Route::post('/jobs', [JobController::class, 'store'])->middleware('auth');
+Route::get('/jobs/{job:id}/edit', [JobController::class, 'edit'])->middleware('auth')->can('updateJob', 'job');;
+Route::patch('/jobs/{job:id}', [JobController::class, 'update'])->middleware('auth')->can('updateJob', 'job');
 
 Route::get('/search', SearchController::class);
 Route::get('/tags/{tag:name}', TagController::class);

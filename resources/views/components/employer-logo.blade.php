@@ -1,6 +1,13 @@
 @props(['width' => 42, 'employer'])
 
 <div>
-    <img src="{{ asset('storage/' .$employer->logo) }}" class="rounded" width="{{ $width }}"
-         onerror="this.onerror=null;this.src='http://picsum.photos/seed/{{ rand(1, 10000) }}/{{ $width }}';">
+    @if($employer->real)
+        <img
+            src="{{ asset('storage/' .$employer->logo) }}"
+            class="rounded" width="{{ $width }}"
+            alt="{{ $employer->logo }}"
+        >
+    @else
+        <img src="{{ $employer->logo }}/{{ $width  }}" class="rounded" alt="{{ $employer->logo }}">
+    @endif
 </div>

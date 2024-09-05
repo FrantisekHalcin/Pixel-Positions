@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
@@ -65,27 +66,47 @@ class JobController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Job $job)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Job $job)
     {
-        //
+        $tags = $job->tags()->pluck('name')->implode(', ');
+
+        return view('jobs.edit', [
+            'job' => $job,
+            'tags' => $tags,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateJobRequest $request, Job $job)
+    public function update(Request $request, Job $job)
     {
-        //
+//        dd('kuhgufuyf');
+        $attr = request()->validate([
+            'title' => ['required'],
+            'salary' => ['required'],
+            'location' => ['required'],
+            'type' => ['required', Rule::in(['Part Time', 'Full Time', 'Freelance'])],
+            'url' => ['required', 'active_url'],
+            'tags' => ['nullable'],
+        ]);
+
+        $attr['featured'] = $request->has('featured');
+
+        $job->update(Arr::except($attr, ['tags']));
+
+        if ($attr['tags']) {
+            // Detach existing tags
+            $job->tags()->detach();
+
+            foreach (explode(',', $attr['tags']) as $tag) {
+                $job->tag($tag);
+            };
+        }
+
+        return redirect('/');
     }
 
     /**

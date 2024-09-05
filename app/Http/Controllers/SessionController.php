@@ -44,6 +44,8 @@ class SessionController extends Controller
     {
         Auth::logout();
 
+        request()->session()->regenerate();
+
         return redirect('/');
     }
 }

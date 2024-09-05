@@ -13,13 +13,19 @@
             <p class="opacity-60 text-sm">{{ $job->salary }}</p>
         </div>
 
-        <div class="flex flex-col justify-start">
+        <div class="flex flex-col justify-between">
             <div class="flex-0">
                 @foreach($job->tags as $tag)
                     <x-tag :size="'small'" :$tag ></x-tag>
                 @endforeach
             </div>
 
+            @can('updateJob', $job)
+                <div class="text-end">
+                    <a href="/jobs/{{ $job->id }}/edit" class="bg-emerald-800 px-2 py-0.5 hover:bg-emerald-600
+                rounded transition-colors duration-300">Edit</a>
+                </div>
+            @endcan
         </div>
     </div>
 

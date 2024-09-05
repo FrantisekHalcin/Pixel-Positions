@@ -48,6 +48,7 @@ class RegisterUserController extends Controller
         $user->employer()->create([
             'name' => $employerAttr['employer'],
             'logo' => $logoPath,
+            'real' => true,
         ]);
 
         Auth::login($user);
