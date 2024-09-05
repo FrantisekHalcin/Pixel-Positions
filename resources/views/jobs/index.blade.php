@@ -2,13 +2,10 @@
     <div class="space-y-5">
         <section class="text-center pt-10">
             <h1 class="text-4xl my-4">Let's Find an Awesome Job</h1>
-            <form action="">
-                <input
-                    class="border-transparent border-2 hover:border-2 hover:border-prime hover:bg-white/20 focus:bg-white/20 px-6 py-4
-                        bg-white/10 rounded-2xl w-full max-w-2xl transition-colors duration-500"
-                    type="text"
-                    placeholder="Web Developer...">
-            </form>
+            <x-forms.form method="GET" action="/search">
+                <x-forms.input placeholder="Web Developer..." :label="false" type="text" name="q"></x-forms.input>
+                <x-forms.button>Search</x-forms.button>
+            </x-forms.form>
         </section>
         <section class="pt-5">
             <x-heading-section>Top Jobs</x-heading-section>
