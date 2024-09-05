@@ -18,7 +18,7 @@
 
         <section>
             <x-heading-section>Tags</x-heading-section>
-            <div class="space-x-1">
+            <div class="flex flex-wrap justify-start gap-2">
                 @foreach($tags as $tag)
                     <x-tag :size="'base'" :$tag></x-tag>
                 @endforeach
@@ -30,7 +30,7 @@
             <div class="space-y-5">
                 @foreach($jobs as $job)
                     <x-job-card-wide :$job ></x-job-card-wide>
-                @endforeach
+                @endforeachgaps
             </div>
         </section>
 
