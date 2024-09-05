@@ -30,7 +30,7 @@
             <div class="space-y-5">
                 @foreach($jobs as $job)
                     <x-job-card-wide :$job ></x-job-card-wide>
-                @endforeachgaps
+                @endforeach
             </div>
         </section>
 
