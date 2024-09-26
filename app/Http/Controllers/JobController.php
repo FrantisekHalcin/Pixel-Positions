@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\JobEdited;
 use App\Models\Job;
 use App\Http\Requests\StoreJobRequest;
 use App\Http\Requests\UpdateJobRequest;
@@ -83,7 +84,6 @@ class JobController extends Controller
      */
     public function update(Request $request, Job $job)
     {
-//        dd('kuhgufuyf');
         $attr = request()->validate([
             'title' => ['required'],
             'salary' => ['required'],
@@ -106,7 +106,9 @@ class JobController extends Controller
             };
         }
 
-        return redirect('/');
+        event(new JobEdited());
+
+        return redirect('/')->with('success', 'Data saved successfully!');
     }
 
     /**
@@ -114,6 +116,8 @@ class JobController extends Controller
      */
     public function destroy(Job $job)
     {
-        //
+        $job->delete();
+
+        return redirect('/');
     }
 }

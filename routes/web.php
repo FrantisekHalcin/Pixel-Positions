@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SessionController;
@@ -20,10 +21,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [JobController::class, 'index']);
 
+Route::get('/jobs/{job:id}/pdf', [PDFController::class, 'generatePDF']);
+
 Route::get('/jobs/create', [JobController::class, 'create'])->middleware('auth');
 Route::post('/jobs', [JobController::class, 'store'])->middleware('auth');
 Route::get('/jobs/{job:id}/edit', [JobController::class, 'edit'])->middleware('auth')->can('updateJob', 'job');;
 Route::patch('/jobs/{job:id}', [JobController::class, 'update'])->middleware('auth')->can('updateJob', 'job');
+Route::delete('/jobs/{job:id}', [JobController::class, 'destroy'])->middleware('auth')->can('updateJob', 'job');
 
 Route::get('/search', SearchController::class);
 Route::get('/tags/{tag:name}', TagController::class);

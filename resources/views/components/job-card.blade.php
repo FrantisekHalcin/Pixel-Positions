@@ -13,11 +13,20 @@
             <div class="flex items-center justify-between">
                 <p class="opacity-60 text-sm">{{ $job->salary }}</p>
                 @can('updateJob', $job)
-                    <div class="text-end">
+                    <div class="text-end flex gap-2">
                         <a href="/jobs/{{ $job->id }}/edit" class="bg-emerald-800 px-2 py-0.5 hover:bg-emerald-600
                 rounded transition-colors duration-300">Edit</a>
+                        <form method="POST" action="/jobs/{{ $job->id }}">
+                            @csrf
+                            @method('DELETE')
+
+                            <button class="bg-red-800 px-2 py-0.5 hover:bg-red-600 rounded transition-colors
+                        duration-300" onclick="return confirm('Are you sure you want to delete this job?');
+                        ">Delete</button>
                     </div>
                 @endcan
+                <a href="/jobs/{{ $job->id }}/pdf" class="bg-blue-800 text-sm px-1 hover:bg-emerald-600
+                rounded transition-colors duration-300">save PDF</a>
             </div>
 
         </div>
