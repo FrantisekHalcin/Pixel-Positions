@@ -106,9 +106,9 @@ class JobController extends Controller
             };
         }
 
-        event(new JobEdited());
+        event(new JobEdited('Job edited successfully!'));
 
-        return redirect('/')->with('success', 'Data saved successfully!');
+        return redirect('/');
     }
 
     /**

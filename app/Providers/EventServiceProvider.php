@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\JobEdited;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -25,7 +26,10 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Listen for the JobEdited event
+        Event::listen(JobEdited::class, function ($event) {
+            session()->flash('message', $event->message);
+        });
     }
 
     /**

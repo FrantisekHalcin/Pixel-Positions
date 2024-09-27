@@ -7,8 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pixel Positions</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body class="bg-gray-950 text-white">
+@if(session('message'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: '{{ session('message') }}',
+            showConfirmButton: false,
+            timer: 1800 // Auto close after 1.5 seconds
+        });
+    </script>
+@endif
 <div class="px-10">
     <nav class="flex justify-between items-center border-b p-2 border-white/20">
         <a href="/">
